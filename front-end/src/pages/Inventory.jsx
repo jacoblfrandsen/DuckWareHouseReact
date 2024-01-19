@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { AiOutlineEdit} from 'react-icons/ai'
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md'
-
+import rubberDuckImage from '../assets/rubberDuck.png'
 
 const Inventory = () => {
     const [ducks, setDucks] = useState([])
@@ -36,7 +36,11 @@ const Inventory = () => {
 
         <div className='p-4'>
             <div className='flex justify-between items-center'>
+            <div className='flex items-center'>
                 <h1 className='text-3xl my-8'>Duck WareHouse</h1>
+                <img src={rubberDuckImage} alt="Rubber Duck" className="mr-2" style={{ height: '100px' }} />
+            </div>
+
                 <Link to='/ducks/create'>
                 <MdOutlineAddBox className='text-sky-800 text-4xl' />
                 </Link>

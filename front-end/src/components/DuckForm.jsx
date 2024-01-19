@@ -57,7 +57,7 @@ const DuckForm = ({ initialDuck, onSubmit }) => {
                     step="0.01"
                     min='0'
                     value={price}
-                    onChange={(e) => setPrice(e.target.value)}
+                    onChange={(e) => setPrice(Math.max(0, parseFloat(e.target.value)))}
                     className='border-2 border-gray-500 px-4 py-2  w-full '
                 />
             </div>
@@ -66,7 +66,7 @@ const DuckForm = ({ initialDuck, onSubmit }) => {
                 <input
                     type='number'
                     value={quantity}
-                    onChange={(e) => setQuantity(e.target.value)}
+                    onChange={(e) => setQuantity(Math.max(0, parseFloat(e.target.value)))}
                     className='border-2 border-gray-500 px-4 py-2  w-full '
                 />
             </div>

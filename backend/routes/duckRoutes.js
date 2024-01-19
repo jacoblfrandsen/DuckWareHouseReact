@@ -14,8 +14,6 @@ const checkForDupDucks = async (price, color, size) => {
 };
 
 
-
-
 //create a duck
 router.post('/', async (req, res) => {
     try{
@@ -145,8 +143,6 @@ router.delete('/deleteall', async (req, res) => {
 router.delete('/delete/:duckId', async (req, res) => {
     try{
 
-        // const {duckId} = req.params
-        // const result = await Duck.findOneAndDelete({duckId: duckId})
         const {duckId} = req.params
         const result = await Duck.findByIdAndUpdate(duckId, {deleted: true})
 
@@ -161,8 +157,6 @@ router.delete('/delete/:duckId', async (req, res) => {
         res.status(500).send({message:error.message})
     }
 });
-
-
 
 
 module.exports = router

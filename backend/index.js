@@ -1,6 +1,7 @@
 const express = require('express'); 
 const mongoose = require('mongoose')
 const duckRoutes = require('./routes/duckRoutes.js')
+const storeRoutes = require ('./routes/storeRoutes.js')
 const cors = require('cors')
 
 const dotenv = require('dotenv')
@@ -13,12 +14,15 @@ const app = express();
 app.use(express.json())
 
 app.get('/', (req, res) => {
-    res.send("Hello worlds"); // This will echo back the parsed body
+    res.send("Hello Duck Store"); // This will echo back the parsed body
 });
 
 app.use(cors())
 
+app.use('/store', storeRoutes)
+
 app.use('/ducks', duckRoutes)
+
 
 mongoose.connect(MONGODB_URL)
 const db = mongoose.connection

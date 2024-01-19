@@ -1,73 +1,51 @@
 class PackageStrategy {
+    
+    defaultShippingMode = {}
+    type = undefined
     constructor() {
         if (this.constructor === PackageStrategy) {
             throw new Error("Abstract classes can't be instantiated.");
         }
+        this.defaultShippingMode = {
+            land: 'polystyrene balls',
+            sea: 'moisture-absorbing beads and bubble wrap bags',
+            air: 'polystyrene balls'
+        }
     }
 
     getPackageType() {
-        throw new Error("Method 'getPackageType()' must be implemented.");
+        return this.type
     }
 
     getProtectionType(shippingMode) {
-        throw new Error("Method 'getProtectionType(shippingMode)' must be implemented.");
+        let shippingType = undefined
+        if (shippingMode){
+            shippingType = this.defaultShippingMode[shippingMode]
+        }
+        return shippingType
     }
+
 }
 
 class WoodPackageStrategy extends PackageStrategy {
-    getPackageType() {
-        return 'wood';
-    }
-
-    getProtectionType(shippingMode) {
-        switch (shippingMode) {
-            case 'land':
-                return 'polystyrene balls';
-            case 'sea':
-                return 'moisture-absorbing beads and bubble wrap bags';
-            case 'air':
-                return 'polystyrene balls';
-            default:
-                return '';
-        }
+    constructor() {
+        super ();
+        this.type = 'wood'
     }
 }
 
 class CardboardPackageStrategy extends PackageStrategy {
-    getPackageType() {
-        return 'cardboard';
-    }
-
-    getProtectionType(shippingMode) {
-        switch (shippingMode) {
-            case 'land':
-                return 'polystyrene balls';
-            case 'sea':
-                return 'moisture-absorbing beads and bubble wrap bags';
-            case 'air':
-                return 'polystyrene balls';
-            default:
-                return '';
-        }
+    constructor() {
+        super ();
+        this.type = 'cardboard'
     }
 }
 
 class PlasticPackageStrategy extends PackageStrategy {
-    getPackageType() {
-        return 'plastic';
-    }
-
-    getProtectionType(shippingMode) {
-        switch (shippingMode) {
-            case 'land':
-                return 'polystyrene balls';
-            case 'sea':
-                return 'moisture-absorbing beads and bubble wrap bags';
-            case 'air':
-                return 'bubble wrap bags';
-            default:
-                return '';
-        }
+    constructor() {
+        super ();
+        this.type = 'plastic'
+        this.defaultShippingMode.air = 'bubble wrap bags'
     }
 }
 

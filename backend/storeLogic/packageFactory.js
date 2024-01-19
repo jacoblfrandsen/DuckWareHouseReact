@@ -2,18 +2,21 @@ const { WoodPackageStrategy, CardboardPackageStrategy, PlasticPackageStrategy } 
 
 class PackageFactory {
     static createPackage(size) {
-        switch(size) {
-            case 'XLarge':
-            case 'Large':
-                return new WoodPackageStrategy();
-            case 'Medium':
-                return new CardboardPackageStrategy();
-            case 'Small':
-            case 'XSmall':
-                return new PlasticPackageStrategy();
-            default:
-                throw new Error('Invalid size');
+        let Strategy = undefined
+        if(size){
+            let json = {
+                XLarge: WoodPackageStrategy,
+                Large: WoodPackageStrategy,
+                Medium: CardboardPackageStrategy,
+                Small: PlasticPackageStrategy,
+                XSmall: PlasticPackageStrategy,
+            }
+            if(json[size]){
+                Strategy = new json[size]()
+            }
         }
+        return Strategy
+
     }
 }
 

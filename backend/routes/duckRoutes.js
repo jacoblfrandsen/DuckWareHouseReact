@@ -48,9 +48,6 @@ router.post('/', async (req, res) => {
             const duck = await Duck.create(newDuck)
             return res.status(201).send(duck)
         }
-
-
-        
     
     }catch (error){
         console.log(error.message)
@@ -61,7 +58,7 @@ router.post('/', async (req, res) => {
 //get all ducks
 router.get('/', async (req, res) => {
     try{
-        // change to -1 to get Decsending order
+        // change to -1 to get Acsending order
         const ducks = await Duck.find({ deleted: { $ne: true }}).sort({ quantity: 1 })
 
         return res.status(200).json({
@@ -73,7 +70,7 @@ router.get('/', async (req, res) => {
         res.status(500).send({message:error.message})
     }
 });
-
+//gets duck by id
 router.get('/:duckId', async (req, res) => {
     try{
 
